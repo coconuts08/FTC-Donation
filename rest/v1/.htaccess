@@ -1,0 +1,8 @@
+RewwriteEngine On
+# use for authentication
+Rewrite %{HTTP:AUTHORIZATION} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP::AUTHORIZATION}]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-for
+
+Header set Access-Control-Allow-Origin *
