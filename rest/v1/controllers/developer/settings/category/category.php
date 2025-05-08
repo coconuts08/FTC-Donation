@@ -1,26 +1,30 @@
 <?php
-
-
-//use http header
+// set http header
 require '../../../../core/header.php';
-//use function
+// use needed functions
 require '../../../../core/functions.php';
-//use needed models
-require '';
+// use needed models
+require '../../../../models/developer/settings/category/Category.php';
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-    //get
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    // GET READ ALL OR BY ID
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $result = require 'read.php';
         sendResponse($result);
         exit;
     }
-
-    //create
-    if ($_SERVER['REQUEST_METHOD'] == 'post') {
+    // POST OR CREATE
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = require 'create.php';
+        sendResponse($result);
+        exit;
+    }
+
+    // put OR update
+    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+        $result = require 'update.php';
         sendResponse($result);
         exit;
     }

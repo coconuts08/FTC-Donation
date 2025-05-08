@@ -7,8 +7,15 @@ import { Form, Formik } from "formik";
 import { InputText, InputTextArea } from "../../../../customhooks/FormInputs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryData } from "../../../../helper/queryData";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import {
+  setError,
+  setMessage,
+  setSuccess,
+} from "../../../../../../store/StoreAction";
 
 const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
+  const { store, dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
 
   const queryClient = useQueryClient();
@@ -16,9 +23,9 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? ``
+          ? `/rest/v1/controllers/developer/settings/category/category.php?categoryid=${itemEdit.category_aid}`
           : `/rest/v1/controllers/developer/settings/category/category.php`,
-        itemEdit ? "PUT" : "post",
+        itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
@@ -26,13 +33,21 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
 
       if (!data.success) {
         console.log("error");
+        dispatch(setError(true));
+        dispatch(setMessage(data.error));
       } else {
+        setIsModal(false);
         console.log("save");
+        dispatch(setSuccess(true));
+        dispatch(setMessage(`Successfully ${itemEdit ? "updated" : "added"}`));
       }
     },
   });
 
-  const initVal = { category_name: "", category_description: "" };
+  const initVal = {
+    category_name: itemEdit ? itemEdit.category_name : "",
+    category_description: itemEdit ? itemEdit.category_description : "",
+  };
   const yupSchema = Yup.object({
     category_name: Yup.string().required("required"),
     category_description: Yup.string().required("required"),

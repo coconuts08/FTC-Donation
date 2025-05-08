@@ -1,7 +1,7 @@
 import { devApiUrl, devKey } from "./function-generals";
 
 export const queryData = (endpoint, method = "get", fd = {}) => {
-  let url = (devApiUrl = endpoint);
+  let url = devApiUrl + endpoint;
   let username = devKey;
   let password = "";
   let auth = btoa(`${username}:${password}`);
@@ -12,8 +12,8 @@ export const queryData = (endpoint, method = "get", fd = {}) => {
   let option = { method, headers: myHeaders };
 
   if (method !== "get") {
-    options = {
-      ...options,
+    option = {
+      ...option,
       body: JSON.stringify(fd),
     };
   }

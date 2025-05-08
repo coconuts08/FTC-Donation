@@ -12,9 +12,9 @@ function checkDbConnection()
         $response = new Response();
         $error = [];
         $response->setSuccess(false);
-        $error['type'] = 'invalid_request_error';
-        $error['success'] = false;
-        $error['error'] = 'Database Connection Failed.';
+        $error['type'] = "invalid_request_error";
+        $error["success"] = false;
+        $error['error'] = "Database connection failed.";
         $response->setData($error);
         $response->send();
         exit;
@@ -256,4 +256,5 @@ function checkEndpoint()
     $error['success'] = false;
     $response->setData($error);
     $response->send();
+    exit;
 }

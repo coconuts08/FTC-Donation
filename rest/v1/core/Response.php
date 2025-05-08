@@ -15,17 +15,17 @@ class Response
 
     public function setData($data)
     {
-        $this->_success = $data;
+        $this->_data = $data;
     }
 
     public function setStatusCode($statusCode)
     {
-        $this->_success = $statusCode;
+        $this->_statusCode = $statusCode;
     }
 
     public function toCache($toCache)
     {
-        $this->_success = $toCache;
+        $this->_toCache = $toCache;
     }
 
     public function send()
@@ -33,15 +33,16 @@ class Response
         header("Content-Type:application/json;charset=utf-8");
 
         if ($this->_toCache == true) {
-            header("Cache-Control: max-age-60");
+            header("Cache-Control: max-age=60");
         } else {
-            header("Cache-Control: no-cache, no -store");
+            header("Cache-Control: no-cache, no-store");
         }
         if ($this->_success == false) {
             $this->_responseData = $this->_data;
         } else {
             $this->_responseData = $this->_data;
         }
+
         echo json_encode($this->_responseData);
     }
 }
