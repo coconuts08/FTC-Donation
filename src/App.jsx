@@ -26,6 +26,7 @@ export default function App() {
               path="/settings/designation"
               element={<SettingsDesignation />}
             />
+
           </Routes>
         </Router>
       </StoreProvider>

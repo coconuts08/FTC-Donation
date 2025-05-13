@@ -38,37 +38,37 @@ export const developerNavigation = [
       {
         name: "users",
         code: "users",
-        link: "/users",
+        link: "/settings/users",
       },
 
       {
         name: "general",
         code: "general",
-        link: "/general",
+        link: "/settings/general",
       },
 
       {
         name: "category",
         code: "category",
-        link: "/category",
+        link: "/settings/category",
       },
 
       {
         name: "designation",
         code: "designation",
-        link: "/designation",
+        link: "/settings/designation",
       },
 
       {
         name: "notfication",
         code: "notfication",
-        link: "/notfication",
+        link: "/settings/notfication",
       },
 
       {
         name: "maintenance",
         code: "maintenance",
-        link: "/maintenance",
+        link: "/settings/maintenance",
       },
     ],
   },
