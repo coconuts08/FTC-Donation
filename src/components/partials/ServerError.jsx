@@ -1,17 +1,17 @@
-import React from 'react'
-import { TbWorldCog } from 'react-icons/tb'
+import React from "react";
+import { TbWorldCog } from "react-icons/tb";
 
 const ServerError = () => {
   return (
     <>
-    <div className='flex justify-center items-center flex-col p-2'>
-        <TbWorldCog className='h-14 w-14 text-gray-300'/>
-        <span className='text-gray-300 text-xl'>
-            Server Error / API NETWORK Error
+      <div className="flex justify-center items-center flex-col p-2">
+        <TbWorldCog className="h-14 w-14 text-gray-300" />
+        <span className="text-gray-300 text-xl">
+          Server Error / API NETWORK Error
         </span>
-    </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default ServerError
+export default ServerError;

@@ -2,11 +2,10 @@
 
 $conn = null;
 $conn = checkDbConnection();
-
 // MAKE INSTANCE OF A CLASS
 $category = new Category($conn);
 
-// GET METHOD REQUEST SHOULD NOT BE PRESENT IN THIS REQUEST
+//  GET METHOD REQUEST SHOULD NOT BE PRESENT IN THIS REQUEST
 if (array_key_exists("categoryid", $_GET)) {
     checkEndpoint();
 }

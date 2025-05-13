@@ -1,5 +1,6 @@
 <?php
 
+
 class Response
 {
     private $_success;
@@ -12,31 +13,28 @@ class Response
     {
         $this->_success = $success;
     }
-
     public function setData($data)
     {
         $this->_data = $data;
     }
-
     public function setStatusCode($statusCode)
     {
         $this->_statusCode = $statusCode;
     }
-
     public function toCache($toCache)
     {
         $this->_toCache = $toCache;
     }
-
     public function send()
     {
-        header("Content-Type:application/json;charset=utf-8");
+        header("Content-Type: application/json;charset=utf-8");
 
         if ($this->_toCache == true) {
-            header("Cache-Control: max-age=60");
+            header("Cache-Control: public, max-age=60");
         } else {
-            header("Cache-Control: no-cache, no-store");
+            header("Cache-Control: no-cache, no store");
         }
+
         if ($this->_success == false) {
             $this->_responseData = $this->_data;
         } else {

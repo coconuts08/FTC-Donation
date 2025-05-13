@@ -4,18 +4,18 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes or use the model
-$category = new Category($conn);
+$designation = new Designation($conn);
 
-if (array_key_exists("categoryid", $_GET)) {
-    $category->category_aid = $_GET['categoryid'];
-    checkId($category->category_aid);
-    $query = checkReadById($category);
+if (array_key_exists("designationid", $_GET)) {
+    $designation->designation_aid = $_GET['designationid'];
+    checkId($designation->designation_aid);
+    $query = checkReadById($designation);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($category);
+    $query = checkReadAll($designation);
     http_response_code(200);
     getQueriedData($query);
 }

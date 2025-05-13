@@ -12,9 +12,9 @@ function checkDbConnection()
         $response = new Response();
         $error = [];
         $response->setSuccess(false);
-        $error['type'] = "invalid_request_error";
-        $error["success"] = false;
-        $error['error'] = "Database connection failed.";
+        $error['type'] = 'invalid_request_error';
+        $error['success'] = false;
+        $error['error'] = 'Database Connection Failed.';
         $response->setData($error);
         $response->send();
         exit;
@@ -234,26 +234,24 @@ function getQueriedData($query)
     exit;
 }
 
-
 function sendResponse($result)
 {
-    $response = new response();
+    $response = new Response();
     $response->setSuccess(true);
     $response->setStatusCode(200);
     $response->setData($result);
     $response->send();
 }
 
-
-
-function checkEndpoint()
+function checkEndPoint()
 {
+
     $response = new Response();
     $error = [];
     $response->setSuccess(false);
-    $error['code'] = '404';
-    $error['error'] = 'Method not found.';
+    $error['code'] = "404";
     $error['success'] = false;
+    $error['error'] = "Method Not Found.";
     $response->setData($error);
     $response->send();
     exit;

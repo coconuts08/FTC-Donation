@@ -4,25 +4,22 @@ import Navigation from "../../Navigation";
 import BreadCrumbs from "../../../../partials/BreadCrumbs";
 import Footer from "../../../../partials/Footer";
 import { FaPlus } from "react-icons/fa";
-import SettingsCategoryList from "./SettingsCategoryList";
-import ModalAddSettingsCategory from "./ModalAddSettingsCategory";
+import SettingsDesignationList from "./SettingsDesignationList";
+import ModalAddSettingsDesignation from "./ModalAddSettingsDesignation";
 
-const SettingsCategory = () => {
-  const [isModalCategory, setIsModalCategory] = React.useState(false); //INITIAL VALUE
-
+const SettingsDesignation = () => {
+  const [isModalDesignation, setIsModalDesignation] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState(null);
 
   const handleAdd = () => {
     setItemEdit(null);
-    setIsModalCategory(true);
+    setIsModalDesignation(true);
   };
-
-  console.log(isModalCategory);
 
   return (
     <>
       <Header />
-      <Navigation menu="settings" subMenu="category" />
+      <Navigation menu="settings" subMenu="designation" />
       <div className="wrapper">
         {/* BREADCRUMBS OR ADD BUTTON */}
         <div className="flex items-center justify-between">
@@ -37,13 +34,13 @@ const SettingsCategory = () => {
           </button>
         </div>
 
-        {/* ADD CONTENT  */}
+        {/* MAIN CONTENT */}
         <div className="pb-8">
-          <h2>Category</h2>
+          <h2>Designation</h2>
           <div className="pt-3">
-            <SettingsCategoryList
+            <SettingsDesignationList
               setItemEdit={setItemEdit}
-              setIsModal={setIsModalCategory}
+              setIsModal={setIsModalDesignation}
             />
           </div>
         </div>
@@ -52,14 +49,14 @@ const SettingsCategory = () => {
         <Footer />
       </div>
 
-      {isModalCategory && (
-        <ModalAddSettingsCategory
+      {isModalDesignation && (
+        <ModalAddSettingsDesignation
           itemEdit={itemEdit}
-          setIsModal={setIsModalCategory}
+          setIsModal={setIsModalDesignation}
         />
       )}
     </>
   );
 };
 
-export default SettingsCategory;
+export default SettingsDesignation;

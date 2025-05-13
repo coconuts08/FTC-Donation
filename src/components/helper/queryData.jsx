@@ -1,4 +1,4 @@
-import { devApiUrl, devKey } from "./function-generals";
+import { devKey, devApiUrl } from "./function-general";
 
 export const queryData = (endpoint, method = "get", fd = {}) => {
   let url = devApiUrl + endpoint;
@@ -7,17 +7,18 @@ export const queryData = (endpoint, method = "get", fd = {}) => {
   let auth = btoa(`${username}:${password}`);
   let myHeaders = new Headers();
   myHeaders.append("Authorization", "Basic" + auth);
-  myHeaders.append("Content-type", "application/json");
+  myHeaders.append("Content-Type", "application/json");
 
-  let option = { method, headers: myHeaders };
+  let options = { method, headers: myHeaders };
 
   if (method !== "get") {
-    option = {
-      ...option,
+    options = {
+      ...options,
       body: JSON.stringify(fd),
     };
   }
-  const data = fetch(url, option).then((res) => res.json());
+
+  const data = fetch(url, options).then((res) => res.json());
 
   return data;
 };

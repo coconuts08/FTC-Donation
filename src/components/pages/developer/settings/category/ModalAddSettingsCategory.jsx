@@ -1,12 +1,11 @@
 import React from "react";
-
+import ModalWrapperSide from "../../../../partials/modal/ModalWrapperSide";
 import { FaTimesCircle } from "react-icons/fa";
-import ModalWrapper from "../../../../partials/modal/ModalWrapper";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { InputText, InputTextArea } from "../../../../customhooks/FormInputs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { InputText, InputTextArea } from "../../../../custom-hooks/FormInputs";
 import { queryData } from "../../../../helper/queryData";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import {
   setError,
@@ -25,21 +24,19 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
         itemEdit
           ? `/rest/v1/controllers/developer/settings/category/category.php?categoryid=${itemEdit.category_aid}`
           : `/rest/v1/controllers/developer/settings/category/category.php`,
-        itemEdit ? "put" : "post",
+        itemEdit ? "PUT" : "POST",
         values
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["category"] });
 
       if (!data.success) {
-        console.log("error");
-        dispatch(setError(true));
         dispatch(setMessage(data.error));
+        dispatch(setError(true));
       } else {
         setIsModal(false);
-        console.log("save");
+        dispatch(setMessage(`Successfully ${itemEdit ? "updated" : "added"}.`));
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Successfully ${itemEdit ? "updated" : "added"}`));
       }
     },
   });
@@ -56,16 +53,17 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
   const handleClose = () => {
     setAnimate("translate-x-full");
     setTimeout(() => {
-      setIsModal(false);
+      setIsModal(false); // CLOSE MODAL
     }, 200);
   };
+
   React.useEffect(() => {
-    setAnimate("");
+    setAnimate();
   }, []);
 
   return (
     <>
-      <ModalWrapper handleClose={handleClose} className={`${animate}`}>
+      <ModalWrapperSide handleClose={handleClose} className={`${animate}`}>
         <div className="modal__header">
           <h3>{itemEdit ? "Update" : "Add"} Category</h3>
           <button
@@ -76,11 +74,12 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
             <FaTimesCircle className="text-lg" />
           </button>
         </div>
+
         <div className="modal__body">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}
-            onSubmit={async (values, { setSubmitting, resetform }) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
               console.log(values);
               mutation.mutate(values);
             }}
@@ -95,7 +94,7 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
                           label="Name"
                           type="text"
                           name="category_name"
-                          disable={"false"}
+                          disable={false}
                         />
                       </div>
                       <div className="relative mt-3 mb-5">
@@ -103,7 +102,7 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
                           label="Description"
                           type="text"
                           name="category_description"
-                          disable={"false"}
+                          disable={false}
                         />
                       </div>
                     </div>
@@ -129,7 +128,7 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
             }}
           </Formik>
         </div>
-      </ModalWrapper>
+      </ModalWrapperSide>
     </>
   );
 };

@@ -1,25 +1,28 @@
 <?php
-// check Database connection
+
+//CHECK DATABASE CONNECTION
+
 $conn = null;
 $conn = checkDbConnection();
-// use models
+//USE MODELS
 $category = new Category($conn);
 
 if (array_key_exists('categoryid', $_GET)) {
     // check data
     checkPayload($data);
-    // checking data
+    // CHECKING DATA
     $category->category_aid = $_GET['categoryid'];
     $category->category_name = checkIndex($data, 'category_name');
     $category->category_description = checkIndex($data, 'category_description');
     $category->category_updated = date('Y-m-d H:i:s');
 
-    // validation
-    checkID($category->category_aid);
+    // VALIDATION
+    checkId($category->category_aid);
 
     $query = checkUpdate($category);
     returnSuccess($category, 'category update', $query);
 }
 
-//
-checkEndpoint();
+// exit if not available
+
+checkEndPoint();

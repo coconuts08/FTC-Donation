@@ -2,9 +2,12 @@ import React from "react";
 import { StoreReducer } from "./StoreReducer";
 
 const initVal = {
-  success: false,
   error: false,
+  success: false,
   message: "",
+  archive: false,
+  restore: false,
+  delete: false,
 };
 
 const StoreContext = React.createContext();
