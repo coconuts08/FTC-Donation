@@ -60,9 +60,9 @@ export const developerNavigation = [
       },
 
       {
-        name: "notfication",
-        code: "notfication",
-        link: "/settings/notfication",
+        name: "notification",
+        code: "notification",
+        link: "/settings/notification",
       },
 
       {

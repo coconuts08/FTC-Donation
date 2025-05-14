@@ -256,3 +256,45 @@ function checkEndPoint()
     $response->send();
     exit;
 }
+
+
+function checkExistence($count, $msg = '')
+{
+    if ($count > 0) {
+        $response = new Response();
+        $error = [];
+        $error['error'] = $msg;
+        $error['success'] = false;
+        $response->setSuccess(false);
+        $response->setData($error);
+        $response->send();
+        exit;
+    }
+}
+
+function isNameExist(
+    $object,
+    $name
+) {
+    $query = $object->checkName();
+    $count = $query->rowCount();
+    checkExistence($count, "{$name} already exist.");
+}
+
+
+function compareName(
+    $object, // Models || parameter
+    $new_name, // pass the new name || parameter
+    $old_name // pass the old new || parameter
+) {
+    if (strtolower($new_name) != strtolower($old_name)) {
+        isNameExist($object, $new_name);
+    }
+}
+
+function isAssociated($object)
+{
+    $query = $object->checkAssociation();
+    $count = $query->rowCount();
+    checkExistence($count, "You cannot delete this item because it is already associated with another module");
+}

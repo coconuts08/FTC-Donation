@@ -17,7 +17,7 @@ const ModalError = () => {
     setAnimate("");
   }, []);
 
-  console.log("asdas", store.message);
+
 
   return (
     <>

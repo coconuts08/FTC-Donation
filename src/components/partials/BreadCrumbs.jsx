@@ -33,7 +33,7 @@ const BreadCrumbs = ({ param = "" }) => {
       );
     });
 
-  console.log(crumbs);
+
 
   return (
     <div className="flex itemscenter gap-x-3 pt-2">

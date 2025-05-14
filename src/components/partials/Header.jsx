@@ -7,7 +7,7 @@ import ModalError from "./modal/ModalError";
 const Header = () => {
   const { store, dispatch } = React.useContext(StoreContext);
 
-  console.log(store.message, store.error, store.success);
+
   return (
     <>
       <div className="sticky top-0 z-20 flex items-center justify-between h-16 border-solid border-b-2 border-black bg-white px-2">

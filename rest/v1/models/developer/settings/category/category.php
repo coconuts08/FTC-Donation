@@ -12,11 +12,13 @@ class Category
     public $lastInsertedId;
 
     public $tblCategory;
+    public $tblDesignation;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblCategory = 'ftcd_settings_category';
+        $this->tblDesignation = 'ftcd_settings_designation';
     }
 
 
@@ -119,6 +121,38 @@ class Category
                 'category_aid' => $this->category_aid
             ]);
         } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    function checkName()
+    {
+        try {
+            $sql = "select category_name ";
+            $sql .= "from {$this->tblCategory} ";
+            $sql .= "where category_name = :category_name ";
+            $query = $this->connection->prepare($sql);
+            $query->execute(["category_name" => $this->category_name]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+
+    function checkAssociation()
+    {
+        try {
+            $sql = "select designation_category_id ";
+            $sql .= "from {$this->tblDesignation} ";
+            $sql .= "where designation_category_id = :designation_category_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                'designation_category_id' => $this->category_aid
+            ]);
+        } catch (PDOException $ex) {
+
             $query = false;
         }
         return $query;

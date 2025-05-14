@@ -44,6 +44,8 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
   const initVal = {
     category_name: itemEdit ? itemEdit.category_name : "",
     category_description: itemEdit ? itemEdit.category_description : "",
+
+    category_name_old: itemEdit ? itemEdit.category_name : "",
   };
   const yupSchema = Yup.object({
     category_name: Yup.string().required("required"),

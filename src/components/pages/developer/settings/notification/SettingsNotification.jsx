@@ -4,25 +4,22 @@ import Navigation from "../../Navigation";
 import BreadCrumbs from "../../../../partials/BreadCrumbs";
 import Footer from "../../../../partials/Footer";
 import { FaPlus } from "react-icons/fa";
-import SettingsCategoryList from "./SettingsCategoryList";
-import ModalAddSettingsCategory from "./ModalAddSettingsCategory";
+import SettingsNotificationList from "./SettingsNotificationList";
+import ModalAddSettingsNotification from "./ModalAddSettingsNotification";
 
-const SettingsCategory = () => {
-  const [isModalCategory, setIsModalCategory] = React.useState(false); //INITIAL VALUE
-
+const SettingsNotification = () => {
+  const [isModalNotification, setIsModalNotification] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState(null);
 
   const handleAdd = () => {
     setItemEdit(null);
-    setIsModalCategory(true);
+    setIsModalNotification(true);
   };
-
-
 
   return (
     <>
       <Header />
-      <Navigation menu="settings" subMenu="category" />
+      <Navigation menu="settings" subMenu="notification" />
       <div className="wrapper">
         {/* BREADCRUMBS OR ADD BUTTON */}
         <div className="flex items-center justify-between">
@@ -37,13 +34,13 @@ const SettingsCategory = () => {
           </button>
         </div>
 
-        {/* ADD CONTENT  */}
+        {/* MAIN CONTENT */}
         <div className="pb-8">
-          <h2>Category</h2>
+          <h2>Notification</h2>
           <div className="pt-3">
-            <SettingsCategoryList
+            <SettingsNotificationList
               setItemEdit={setItemEdit}
-              setIsModal={setIsModalCategory}
+              setIsModal={setIsModalNotification}
             />
           </div>
         </div>
@@ -52,14 +49,14 @@ const SettingsCategory = () => {
         <Footer />
       </div>
 
-      {isModalCategory && (
-        <ModalAddSettingsCategory
+      {isModalNotification && (
+        <ModalAddSettingsNotification
           itemEdit={itemEdit}
-          setIsModal={setIsModalCategory}
+          setIsModal={setIsModalNotification}
         />
       )}
     </>
   );
 };
 
-export default SettingsCategory;
+export default SettingsNotification;

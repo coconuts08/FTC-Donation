@@ -17,7 +17,7 @@ import ModalRestore from "../../../../partials/modal/ModalRestore";
 import ModalDelete from "../../../../partials/modal/ModalDelete";
 import { getCategoryDataById } from "./function";
 
-const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
+const SettingsNotificationList = ({ setItemEdit, setIsModal }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
   const [dataItem, setDataItem] = React.useState(null);
@@ -42,11 +42,11 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
     isLoading,
     isFetching,
     error,
-    data: designation,
+    data: notification,
   } = useQueryData(
-    `/rest/v1/controllers/developer/settings/designation/designation.php`,
+    `/rest/v1/controllers/developer/settings/notification/notification.php`,
     "get",
-    "designation",
+    "notification",
     {},
     null,
     true
@@ -59,19 +59,19 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
 
   const handleArchive = (item) => {
     setDataItem(item);
-    setId(item.designation_aid);
+    setId(item.notification_aid);
     dispatch(setArchive(true));
   };
 
   const handleRestore = (item) => {
     setDataItem(item);
-    setId(item.designation_aid);
+    setId(item.notification_aid);
     dispatch(setRestore(true));
   };
 
   const handleDelete = (item) => {
     setDataItem(item);
-    setId(item.designation_aid);
+    setId(item.notification_aid);
     dispatch(setDelete(true));
   };
   return (
@@ -85,7 +85,8 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
                 <th className="w-[3rem]">#</th>
                 <th className="w-[]">Status</th>
                 <th className="w-[]">Name</th>
-                <th className="w-[]">Category</th>
+                <th className="w-[]">Email</th>
+                <th className="w-[]">purpose</th>
                 <th colSpan="100%"></th>
               </tr>
             </thead>
@@ -111,7 +112,7 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
                 </>
               )}
               {/* IF DATA HAS NO COUNT*/}
-              {designation?.count == 0 && (
+              {notification?.count == 0 && (
                 <>
                   <tr className="text-center">
                     <td colSpan="100%">
@@ -121,25 +122,24 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
                 </>
               )}
               {/* IF DATA HAS COUNT */}
-              {designation?.count > 0 &&
-                designation.data.map((item, key) => {
+              {notification?.count > 0 &&
+                notification.data.map((item, key) => {
                   const categoryData = getCategoryDataById(
-                    item.designation_category_id,
+                    item.notification_pupose,
                     category
                   );
-
 
                   return (
                     <tr key={key} className="group relative">
                       <td>{count++}.</td>
                       <td>
-                        {item.designation_is_active == 1 ? (
+                        {item.notification_is_active == 1 ? (
                           <span className="text-green-600">Active</span>
                         ) : (
                           <span className="text-gray-300">Inactive</span>
                         )}
                       </td>
-                      <td>{item.designation_name}</td>
+                      <td>{item.notification_name}</td>
                       <td className="max-w-[6rem] truncate">
                         {categoryData == null
                           ? "Unspecified"
@@ -147,7 +147,7 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
                       </td>
                       <td colSpan="100%">
                         <div className="flex gap-x-3 items-center justify-end pr-1">
-                          {item.designation_is_active == 1 ? (
+                          {item.notification_is_active == 1 ? (
                             <>
                               <button
                                 type="button"
@@ -198,33 +198,33 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
 
       {store.archive && (
         <ModalArchive
-          endpoint={`/rest/v1/controllers/developer/settings/designation/active.php?designationid=${id}`}
+          endpoint={`/rest/v1/controllers/developer/settings/notification/active.php?notificationid=${id}`}
           msg={`Are you sure want to archive this record?`}
           successMsg={`Successfully Archived`}
-          queryKey={`designation`}
+          queryKey={`notification`}
         />
       )}
 
       {store.restore && (
         <ModalRestore
-          endpoint={`/rest/v1/controllers/developer/settings/designation/active.php?designationid=${id}`}
+          endpoint={`/rest/v1/controllers/developer/settings/notification/active.php?notificationid=${id}`}
           msg={`Are you sure want to archive this record?`}
           successMsg={`Successfully Restore`}
-          queryKey={`designation`}
+          queryKey={`notification`}
         />
       )}
 
       {store.delete && (
         <ModalDelete
-          endpoint={`/rest/v1/controllers/developer/settings/designation/designation.php?designationid=${id}`}
+          endpoint={`/rest/v1/controllers/developer/settings/notification/notification.php?notificationid=${id}`}
           msg={`Are you sure want to delete this record?`}
           successMsg={`Successfully Delete.`}
-          item={dataItem.designation_name}
-          queryKey={`designation`}
+          item={dataItem.notification_name}
+          queryKey={`notification`}
         />
       )}
     </>
   );
 };
 
-export default SettingsDesignationList;
+export default SettingsNotificationList;

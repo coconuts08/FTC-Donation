@@ -4,7 +4,7 @@ class Designation
     public $designation_aid;
     public $designation_is_active;
     public $designation_name;
-    // public $designation_description;
+    public $designation_category_id;
     public $designation_created;
     public $designation_updated;
 
@@ -29,19 +29,19 @@ class Designation
             $sql = "insert into {$this->tblDesignation}";
             $sql .= "(designation_is_active, ";
             $sql .= "designation_name, ";
-            // $sql .= "designation_description, ";
+            $sql .= "designation_category_id, ";
             $sql .= "designation_created, ";
             $sql .= "designation_updated) values ( ";
             $sql .= ":designation_is_active, ";
             $sql .= ":designation_name, ";
-            // $sql .= ":designation_description, ";
+            $sql .= ":designation_category_id, ";
             $sql .= ":designation_created, ";
             $sql .= ":designation_updated) ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 'designation_is_active' => $this->designation_is_active,
                 'designation_name' => $this->designation_name,
-                // 'designation_description' => $this->designation_description,
+                'designation_category_id' => $this->designation_category_id,
                 'designation_created' => $this->designation_created,
                 'designation_updated' => $this->designation_updated
             ]);
@@ -73,13 +73,13 @@ class Designation
         try {
             $sql = "update {$this->tblDesignation} set ";
             $sql .= "designation_name = :designation_name, ";
-            // $sql .= "designation_description = :designation_description, ";
+            $sql .= "designation_category_id = :designation_category_id, ";
             $sql .= "designation_updated = :designation_updated ";
             $sql .= "where designation_aid = :designation_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "designation_name" => $this->designation_name,
-                // "designation_description" => $this->designation_description,
+                "designation_category_id" => $this->designation_category_id,
                 "designation_updated" => $this->designation_updated,
                 "designation_aid" => $this->designation_aid,
             ]);

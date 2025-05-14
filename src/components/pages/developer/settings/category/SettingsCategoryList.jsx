@@ -22,7 +22,12 @@ const SettingsCategoryList = ({ setItemEdit, setIsModal }) => {
   const [dataItem, setDataItem] = React.useState(null);
   let count = 1;
 
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  
+
+
+ const [isLoaded, setIsLoaded] = React.useState(false);
+
+  
 
   const {
     isLoading,

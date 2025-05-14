@@ -19,7 +19,7 @@ const Navigation = ({ menu = "", subMenu = "" }) => {
         <div className="text-sm text-white flex flex-col justify-between h-full ">
           <ul>
             {developerNavigation.map((item, index) => {
-              console.log(item.name);
+
               return (
                 <li
                   key={index}
@@ -56,9 +56,12 @@ const Navigation = ({ menu = "", subMenu = "" }) => {
                       {((item.code === "reports" && isReports) ||
                         (item.code === "settings" && isSettings)) && (
                         <>
-                          {item.subMenu.map((subItem) => {
+                          {item.subMenu.map((subItem, index) => {
                             return (
-                              <li className="hover:bg-white/5 cursor-pointer pl-10 my-0.5">
+                              <li
+                                key={index}
+                                className="hover:bg-white/5 cursor-pointer pl-10 my-0.5"
+                              >
                                 <Link
                                   to={subItem.link}
                                   className={`border-l-2 pl-3 border-transparent hover:border-accent ${
