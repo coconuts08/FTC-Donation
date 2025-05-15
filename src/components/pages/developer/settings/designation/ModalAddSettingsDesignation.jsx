@@ -9,7 +9,7 @@ import {
   InputTextArea,
 } from "../../../../custom-hooks/FormInputs";
 import { queryData } from "../../../../helper/queryData";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import {
   setError,
@@ -39,7 +39,7 @@ const ModalAddSettingsDesignation = ({ itemEdit, setIsModal }) => {
   const filterActiveCategory = category?.data.filter(
     (item) =>
       item.category_is_active == 1 ||
-      (itemEdit && itemEdit.designation_category_id == item.category_aid)
+      (itemEdit && item.designation_category_id == item.category_aid)
   );
 
   const queryClient = useQueryClient();
@@ -118,7 +118,7 @@ const ModalAddSettingsDesignation = ({ itemEdit, setIsModal }) => {
                         label="Name"
                         type="text"
                         name="designation_name"
-                        disabled={false}
+                        disabled={mutation.isPending}
                       />
                     </div>
                     <div className="relative mt-3 mb-5">
@@ -126,7 +126,7 @@ const ModalAddSettingsDesignation = ({ itemEdit, setIsModal }) => {
                         label="Category"
                         type="text"
                         name="designation_category_id"
-                        onchange={(e) => e}
+                        onChange={(e) => e}
                         disabled={mutation.isPending}
                       >
                         <optgroup label="-- Select a category">
@@ -158,7 +158,6 @@ const ModalAddSettingsDesignation = ({ itemEdit, setIsModal }) => {
                       </InputSelect>
                     </div>
                   </div>
-
                   <div className="actions">
                     <button
                       type="submit"

@@ -4,27 +4,27 @@ require '../../../../core/header.php';
 // use needed function
 require '../../../../core/functions.php';
 // use model
-require '../../../../models/developer/settings/category/Category.php';
+require '../../../../models/developer/settings/donor/Donor.php';
 // check database conection
 $conn = null;
 $conn = checkDbConnection();
 // store model in variable
-$category = new Category($conn);
+$donorList = new DonorList($conn);
 // get payload
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 // VALIDATE API 
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-    if (array_key_exists('categoryid', $_GET)) {
+    if (array_key_exists('donorid', $_GET)) {
         // CHECK DATA
         checkPayload($data);
-        $category->category_aid = $_GET['categoryid'];
-        $category->category_is_active = trim($data['isActive']);
-        $category->category_updated = date('Y-m-d H:i:s');
+        $donorList->donor_list_aid = $_GET['donorid'];
+        $donorList->donor_list_is_active = trim($data['isActive']);
+        $donorList->donor_list_updated = date('Y-m-d H:i:s');
 
-        checkId($category->category_aid);
-        $query = checkActive($category);
-        returnSuccess($category, 'category active', $query);
+        checkId($donorList->donor_list_aid);
+        $query = checkActive($donorList);
+        returnSuccess($donorList, 'donor active', $query);
     }
     // 404 if endpoint not available
     checkEndPoint();

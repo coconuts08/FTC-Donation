@@ -19,7 +19,7 @@ $notification->notification_is_active = 1;
 $notification->notification_created = date("Y-m-d H:i:s");
 $notification->notification_updated = date("Y-m-d H:i:s");
 
-// VALIDATION
+//VALIDATION
 isNameExist($notification, $notification->notification_name);
 
 $query = checkCreate($notification);

@@ -19,7 +19,6 @@ const Navigation = ({ menu = "", subMenu = "" }) => {
         <div className="text-sm text-white flex flex-col justify-between h-full ">
           <ul>
             {developerNavigation.map((item, index) => {
-
               return (
                 <li
                   key={index}

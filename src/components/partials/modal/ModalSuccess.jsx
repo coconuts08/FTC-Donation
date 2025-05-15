@@ -21,8 +21,6 @@ const ModalSuccess = () => {
     }, 3000);
   }, []);
 
-
-
   return (
     <>
       <div

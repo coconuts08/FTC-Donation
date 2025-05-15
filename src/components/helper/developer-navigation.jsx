@@ -12,20 +12,20 @@ export const developerNavigation = [
   {
     name: "Children List",
     code: "children-list",
-    link: "/children-list",
+    link: "/settings/children-list",
     icon: <FaChildren />,
   },
 
   {
     name: "Reports",
     code: "reports",
-    link: "/reports",
+    link: "/settings/reports",
     icon: <FaList />,
     isDropDown: true,
     subMenu: [
       {
         name: "donation",
-        link: "/donation",
+        link: "/settings/donation",
       },
     ],
   },
@@ -60,8 +60,8 @@ export const developerNavigation = [
       },
 
       {
-        name: "notification",
-        code: "notification",
+        name: "notfication",
+        code: "notfication",
         link: "/settings/notification",
       },
 

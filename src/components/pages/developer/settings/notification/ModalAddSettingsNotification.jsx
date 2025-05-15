@@ -3,9 +3,13 @@ import ModalWrapperSide from "../../../../partials/modal/ModalWrapperSide";
 import { FaTimesCircle } from "react-icons/fa";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-
+import {
+  InputSelect,
+  InputText,
+  InputTextArea,
+} from "../../../../custom-hooks/FormInputs";
 import { queryData } from "../../../../helper/queryData";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import {
   setError,
@@ -13,7 +17,6 @@ import {
   setSuccess,
 } from "../../../../../../store/StoreAction";
 import useQueryData from "../../../../helper/useQueryData";
-import { InputSelect, InputText } from "../../../../custom-hooks/FormInputs";
 
 const ModalAddSettingsNotification = ({ itemEdit, setIsModal }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -64,13 +67,16 @@ const ModalAddSettingsNotification = ({ itemEdit, setIsModal }) => {
   const initVal = {
     notification_name: itemEdit ? itemEdit.notification_name : "",
     notification_purpose: itemEdit ? itemEdit.notification_purpose : "",
+    notification_email: itemEdit ? itemEdit.notification_email : "",
   };
 
   const yupSchema = Yup.object({
     notification_name: Yup.string().required("required"),
     notification_purpose: Yup.string().required("required"),
+    notification_email: Yup.string()
+      .email("Invalid email")
+      .required("required"),
   });
-
   const handleClose = () => {
     setAnimate("translate-x-full");
     setTimeout(() => {
@@ -113,7 +119,7 @@ const ModalAddSettingsNotification = ({ itemEdit, setIsModal }) => {
                         label="Name"
                         type="text"
                         name="notification_name"
-                        disabled={false}
+                        disabled={mutation.isPending}
                       />
                     </div>
                     <div className="relative mt-3 mb-5">
@@ -121,7 +127,7 @@ const ModalAddSettingsNotification = ({ itemEdit, setIsModal }) => {
                         label="Email"
                         type="text"
                         name="notification_email"
-                        disabled={false}
+                        disabled={mutation.isPending}
                       />
                     </div>
                     <div className="relative mt-3 mb-5">
@@ -154,7 +160,6 @@ const ModalAddSettingsNotification = ({ itemEdit, setIsModal }) => {
                       </InputSelect>
                     </div>
                   </div>
-
                   <div className="actions">
                     <button
                       type="submit"

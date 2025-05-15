@@ -36,6 +36,7 @@ const SettingsNotificationList = ({ setItemEdit, setIsModal }) => {
     null,
     true
   );
+
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   const {
@@ -83,10 +84,10 @@ const SettingsNotificationList = ({ setItemEdit, setIsModal }) => {
             <thead>
               <tr>
                 <th className="w-[3rem]">#</th>
-                <th className="w-[]">Status</th>
-                <th className="w-[]">Name</th>
-                <th className="w-[]">Email</th>
-                <th className="w-[]">purpose</th>
+                <th className="w-[3rem]">Status</th>
+                <th className="w-[40rem]">Name</th>
+                <th className="w-[15rem]">Email</th>
+                <th className="w-[15rem]">Purpose</th>
                 <th colSpan="100%"></th>
               </tr>
             </thead>
@@ -125,7 +126,7 @@ const SettingsNotificationList = ({ setItemEdit, setIsModal }) => {
               {notification?.count > 0 &&
                 notification.data.map((item, key) => {
                   const categoryData = getCategoryDataById(
-                    item.notification_pupose,
+                    item.notification_purpose,
                     category
                   );
 
@@ -140,11 +141,14 @@ const SettingsNotificationList = ({ setItemEdit, setIsModal }) => {
                         )}
                       </td>
                       <td>{item.notification_name}</td>
-                      <td className="max-w-[6rem] truncate">
+                      <td>{item.notification_email}</td>
+                      <td>{item.notification_purpose}</td>
+                      {/* <td className="max-w-[6rem] truncate">
                         {categoryData == null
                           ? "Unspecified"
                           : categoryData.category_name}
-                      </td>
+                      </td> */}
+
                       <td colSpan="100%">
                         <div className="flex gap-x-3 items-center justify-end pr-1">
                           {item.notification_is_active == 1 ? (

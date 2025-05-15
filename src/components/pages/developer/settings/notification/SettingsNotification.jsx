@@ -36,7 +36,9 @@ const SettingsNotification = () => {
 
         {/* MAIN CONTENT */}
         <div className="pb-8">
-          <h2>Notification</h2>
+          <div className="py-3">
+            <h2>Notification</h2>
+          </div>
           <div className="pt-3">
             <SettingsNotificationList
               setItemEdit={setItemEdit}

@@ -17,8 +17,7 @@ const SettingsCategory = () => {
     setIsModalCategory(true);
   };
 
-
-
+  
   return (
     <>
       <Header />

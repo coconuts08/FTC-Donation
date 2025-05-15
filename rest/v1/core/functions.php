@@ -256,8 +256,6 @@ function checkEndPoint()
     $response->send();
     exit;
 }
-
-
 function checkExistence($count, $msg = '')
 {
     if ($count > 0) {
@@ -273,21 +271,20 @@ function checkExistence($count, $msg = '')
 }
 
 function isNameExist(
-    $object,
+    $object, // MODELS
     $name
 ) {
     $query = $object->checkName();
     $count = $query->rowCount();
-    checkExistence($count, "{$name} already exist.");
+    checkExistence($count, "{$name} already exists.");
 }
 
-
 function compareName(
-    $object, // Models || parameter
-    $new_name, // pass the new name || parameter
-    $old_name // pass the old new || parameter
+    $object,
+    $new_name,
+    $old__name
 ) {
-    if (strtolower($new_name) != strtolower($old_name)) {
+    if (strtolower($new_name) != strtolower($old__name)) {
         isNameExist($object, $new_name);
     }
 }

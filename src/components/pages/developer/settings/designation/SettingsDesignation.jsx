@@ -36,7 +36,9 @@ const SettingsDesignation = () => {
 
         {/* MAIN CONTENT */}
         <div className="pb-8">
-          <h2>Designation</h2>
+          <div className="py-3">
+            <h2>Designation</h2>
+          </div>
           <div className="pt-3">
             <SettingsDesignationList
               setItemEdit={setItemEdit}

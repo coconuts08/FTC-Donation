@@ -11,6 +11,7 @@ class Category
     public $connection;
     public $lastInsertedId;
 
+    //DATABASE TABLE
     public $tblCategory;
     public $tblDesignation;
 
@@ -133,13 +134,14 @@ class Category
             $sql .= "from {$this->tblCategory} ";
             $sql .= "where category_name = :category_name ";
             $query = $this->connection->prepare($sql);
-            $query->execute(["category_name" => $this->category_name]);
+            $query->execute([
+                "category_name" => $this->category_name
+            ]);
         } catch (PDOException $ex) {
             $query = false;
         }
         return $query;
     }
-
 
     function checkAssociation()
     {
@@ -152,7 +154,6 @@ class Category
                 'designation_category_id' => $this->category_aid
             ]);
         } catch (PDOException $ex) {
-
             $query = false;
         }
         return $query;

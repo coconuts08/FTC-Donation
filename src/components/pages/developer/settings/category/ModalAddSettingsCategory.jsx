@@ -82,7 +82,6 @@ const ModalAddSettingsCategory = ({ itemEdit, setIsModal }) => {
             initialValues={initVal}
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              console.log(values);
               mutation.mutate(values);
             }}
           >

@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { StoreProvider } from "../store/StoreContext";
 import SettingsDesignation from "./components/pages/developer/settings/designation/SettingsDesignation";
 import SettingsNotification from "./components/pages/developer/settings/notification/SettingsNotification";
+import DonorList from "./components/pages/developer/donor-list/DonorList";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -22,14 +23,16 @@ export default function App() {
               }
             />
 
+            <Route path="/" element={<DonorList />}></Route>
+            <Route path="/donor" element={<DonorList />}></Route>
             <Route path="/settings/category" element={<SettingsCategory />} />
-            <Route
-              path="/settings/notification"
-              element={<SettingsNotification />}
-            />
             <Route
               path="/settings/designation"
               element={<SettingsDesignation />}
+            />
+            <Route
+              path="/settings/notification"
+              element={<SettingsNotification />}
             />
           </Routes>
         </Router>

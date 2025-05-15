@@ -36,6 +36,7 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
     null,
     true
   );
+
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   const {
@@ -83,9 +84,9 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
             <thead>
               <tr>
                 <th className="w-[3rem]">#</th>
-                <th className="w-[]">Status</th>
-                <th className="w-[]">Name</th>
-                <th className="w-[]">Category</th>
+                <th className="w-[3rem]">Status</th>
+                <th className="w-[40rem]">Name</th>
+                <th className="w-[15rem]">Category</th>
                 <th colSpan="100%"></th>
               </tr>
             </thead>
@@ -127,7 +128,7 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
                     item.designation_category_id,
                     category
                   );
-
+                 
 
                   return (
                     <tr key={key} className="group relative">
@@ -145,6 +146,7 @@ const SettingsDesignationList = ({ setItemEdit, setIsModal }) => {
                           ? "Unspecified"
                           : categoryData.category_name}
                       </td>
+
                       <td colSpan="100%">
                         <div className="flex gap-x-3 items-center justify-end pr-1">
                           {item.designation_is_active == 1 ? (
